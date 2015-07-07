@@ -8,44 +8,56 @@ namespace OperatorOverloading.Model
 {
     public class Money                                                           
     {
-        public int Amount;
-        public string Currency;
-        
-        public Money()
-        { }                                                           
-
-        public Money(int amt, string curr)                                                                        //Takes input                                                         
+        public double Amount{get; set;}
+        public string Currency { get; set; }
+       
+        public Money(double amount, string currency)
         {
-            if (amt < 0)
+            if (amount < 0.0 || amount >double.MaxValue)
             {
-                throw new ArgumentException();                                                                     ///throw exception for Integer out of range
+                throw new System.Exception("Check Amount Input..!!!! ");
             }
             else
             {
-                this.Amount = amt;
-                this.Currency = curr;
+
+                Amount = amount;
+                Currency = currency;
+
             }
 
+
         }
+             
+    
+          
 
-        public static Money operator +(Money money1, Money money2)                                                  //operator overloading function    
+        
+
+        public static Money operator +(Money money1, Money money2)                                 //operator overloading function    
         { 
-            Money money3 = new Money();
-
-                if (money1.Currency == money2.Currency)
+               Money money3 = new Money(0.0,"");
+                if ( money1.Currency.ToUpper()==money2.Currency.ToUpper())
                 {
-
-
-                    money3.Amount = money1.Amount + money2.Amount;
-                    money3.Currency = money1.Currency;
+                       
+                        money3.Amount = money1.Amount + money2.Amount;
+                        if(money3.Amount>double.MaxValue)
+                        {
+                            throw new System.Exception("Sum is beyond storage capacity");
+                        }
+                        else
+                        {
+                        money3.Currency = money1.Currency;
+                        return money3;}
+                    
+                   
                 }
                 else
                 {
-                    throw new System.Exception();                                                                     //throw exception for currency mismatch
+                    throw new System.Exception("The currency was different");                                                                     //throw exception for currency mismatch
                 }
 
             
-            return money3;
+            
         }
     }
 }
