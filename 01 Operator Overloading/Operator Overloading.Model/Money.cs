@@ -6,26 +6,56 @@ using System.Threading.Tasks;
 
 namespace OperatorOverloading.Model
 {
-    public class Money                                                           
+    public class Money
     {
-        public double Amount{get; set;}
-        public string Currency { get; set; }
+        private double _amount;
+        private string _currency;
+        public double Amount 
+        { 
+            get
+            {
+            return _amount;
+            }
+            set
+            {
+                if (value<0 || double.IsPositiveInfinity(value))
+                {
+                    throw new System.Exception(Resource.InvalidAmountInput);
+                }
+                this._amount = value;
+            }
+
+       }
+        public string Currency { 
+            get
+            {
+                return _currency;
+            
+            }
+            set
+            { 
+            if(string.IsNullOrEmpty(value))
+            {
+            throw new System.Exception(Resource.InvalidCurrency);
+            }
+            this._currency=value;
+            }
+        }
+
+
+        
+       
        
         public Money(double amount, string currency)
         {
-            if (amount < 0.0 || amount >double.MaxValue)
-            {
-                throw new System.Exception("Check Amount Input..!!!! ");
-            }
-            else
-            {
+             
 
-                Amount = amount;
-                Currency = currency;
-
-            }
+               Amount  = amount;
+               Currency = currency;
 
 
+            
+           
         }
              
     
@@ -36,13 +66,13 @@ namespace OperatorOverloading.Model
         public static Money operator +(Money money1, Money money2)                                 //operator overloading function    
         { 
                Money money3 = new Money(0.0,"");
-                if ( money1.Currency.ToUpper()==money2.Currency.ToUpper())
+                if (money1.Currency.Equals(money2.Currency , StringComparison.CurrentCultureIgnoreCase))
                 {
                        
                         money3.Amount = money1.Amount + money2.Amount;
                         if(money3.Amount>double.MaxValue)
                         {
-                            throw new System.Exception("Sum is beyond storage capacity");
+                            throw new System.Exception(Resource.InvalidSum);
                         }
                         else
                         {
@@ -53,7 +83,7 @@ namespace OperatorOverloading.Model
                 }
                 else
                 {
-                    throw new System.Exception("The currency was different");                                                                     //throw exception for currency mismatch
+                    throw new System.Exception(Resource.CurrencyMismatch);                                                                     //throw exception for currency mismatch
                 }
 
             

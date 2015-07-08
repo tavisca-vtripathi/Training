@@ -11,7 +11,8 @@ namespace OperatorOverloading.Host
     {
         
         static void Main(string[] args)
-        {
+        { 
+           
             try                                                          // try block to check validation on input string and currency match
             {
                 
