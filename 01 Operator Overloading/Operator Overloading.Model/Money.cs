@@ -63,13 +63,14 @@ namespace OperatorOverloading.Model
                 throw new Exception(Resource.InvalidAmountInput);
             }
 
-            if (double.TryParse(amountArr[0], out amount))
+            if (double.TryParse(amountArr[0], out amount)==false)
             {
-                Amount = amount;
+                throw new Exception(Resource.InvalidAmountInput);
+                
             }
             else
             {
-                throw new Exception(Resource.InvalidAmountInput);
+                Amount = amount;
             }
 
             Currency = amountArr[1];
@@ -81,13 +82,14 @@ namespace OperatorOverloading.Model
             {
                 throw new Exception(Resource.ObjectNull);
             }
-            if (obj1.Currency.Equals(obj2.Currency, StringComparison.CurrentCultureIgnoreCase))
+            if (!obj1.Currency.Equals(obj2.Currency, StringComparison.CurrentCultureIgnoreCase))
             {
-                double totalAmount = obj1.Amount + obj2.Amount;
-                return new Money(totalAmount, obj1.Currency);
+                throw new Exception(Resource.CurrencyMismatch);
             }
             else
             {
+                double totalAmount = obj1.Amount + obj2.Amount;
+                return new Money(totalAmount, obj1.Currency);
                 throw new Exception(Resource.CurrencyMismatch);
             }
         }

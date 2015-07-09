@@ -16,14 +16,11 @@ namespace OperatorOverloading.Host
             try
             {
                 Console.Write("Enter First Amount and  Currency: ");
-
                 var amount1 = new Money(Console.ReadLine());
-
                 Console.Write("Enter Second Amount and  Currency: ");
                 var amount2 = new Money(Console.ReadLine());
                 var amount3 = amount1 + amount2;
                 Console.Write("The Total Amount is: " + amount3);
-
             }
 
             catch (Exception e)
@@ -32,6 +29,9 @@ namespace OperatorOverloading.Host
                 Console.WriteLine(e.Message);
             }
             Console.ReadLine();
+
+
+
         }
     }
 }
