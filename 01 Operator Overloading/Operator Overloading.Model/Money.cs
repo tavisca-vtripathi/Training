@@ -10,84 +10,84 @@ namespace OperatorOverloading.Model
     {
         private double _amount;
         private string _currency;
-        public double Amount 
-        { 
+        public double Amount               //Property for amount
+        {
             get
             {
-            return _amount;
+                return _amount;
             }
             set
             {
-                if (value<0 || double.IsPositiveInfinity(value))
+                if (value < 0 || double.IsPositiveInfinity(value))
                 {
                     throw new System.Exception(Resource.InvalidAmountInput);
                 }
                 this._amount = value;
             }
-
-       }
-        public string Currency { 
+        }
+        public string Currency           //Property for Currency
+        {
             get
             {
                 return _currency;
-            
+
             }
             set
-            { 
-            if(string.IsNullOrEmpty(value))
             {
-            throw new System.Exception(Resource.InvalidCurrency);
-            }
-            this._currency=value;
-            }
-        }
-
-
-        
-       
-       
-        public Money(double amount, string currency)
-        {
-             
-
-               Amount  = amount;
-               Currency = currency;
-
-
-            
-           
-        }
-             
-    
-          
-
-        
-
-        public static Money operator +(Money money1, Money money2)                                 //operator overloading function    
-        { 
-               Money money3 = new Money(0.0,"");
-                if (money1.Currency.Equals(money2.Currency , StringComparison.CurrentCultureIgnoreCase))
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 {
-                       
-                        money3.Amount = money1.Amount + money2.Amount;
-                        if(money3.Amount>double.MaxValue)
-                        {
-                            throw new System.Exception(Resource.InvalidSum);
-                        }
-                        else
-                        {
-                        money3.Currency = money1.Currency;
-                        return money3;}
-                    
-                   
+                    throw new System.Exception(Resource.InvalidCurrency);
+                }
+                this._currency = value;
+            }
+        }
+        public Money(double amount, string currency)                       //Constructor for receiving inputs
+        {
+            Amount = amount;
+            Currency = currency;
+        }
+        public static Money operator +(Money money1, Money money2)                          //operator overloading function    
+        {
+            if (money1 == null || money2 == null)
+            {
+
+                throw new ArgumentException(Resource.ObjectNull);
+            }
+
+            if (money1.Currency.Equals(money2.Currency, StringComparison.CurrentCultureIgnoreCase))
+            {
+
+                double MoneySum;
+
+                MoneySum = money1.Amount + money2.Amount;
+                if (MoneySum > double.MaxValue)
+                {
+                    throw new System.Exception(Resource.InvalidSum);
                 }
                 else
                 {
-                    throw new System.Exception(Resource.CurrencyMismatch);                                                                     //throw exception for currency mismatch
+                    return new Money(MoneySum, money1.Currency);
                 }
+            }
+            else
+            {
+                throw new System.Exception(Resource.CurrencyMismatch);                                                                     //throw exception for currency mismatch
+            }
 
-            
-            
+
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

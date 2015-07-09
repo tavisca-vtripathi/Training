@@ -118,15 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CurrencyMismatch" xml:space="preserve">
-    <value>" Currecy MisMatch Occured "</value>
+    <value>Currecy MisMatch Occured </value>
   </data>
   <data name="InvalidAmountInput" xml:space="preserve">
-    <value>" Please check your Amount Input "</value>
+    <value>Please check your Amount Input </value>
   </data>
   <data name="InvalidCurrency" xml:space="preserve">
-    <value>" Please check your Currency Input"</value>
+    <value>Please check your Currency Input</value>
   </data>
   <data name="InvalidSum" xml:space="preserve">
-    <value>" Sum is beyond storage "</value>
+    <value>Sum is beyond storage</value>
+  </data>
+  <data name="ObjectNull" xml:space="preserve">
+    <value>Object pased is null object</value>
   </data>
 </root>

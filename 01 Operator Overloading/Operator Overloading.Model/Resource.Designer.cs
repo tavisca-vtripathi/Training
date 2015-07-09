@@ -22,7 +22,7 @@ namespace OperatorOverloading.Model {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
+    public class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace OperatorOverloading.Model {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OperatorOverloading.Model.Resource", typeof(Resource).Assembly);
@@ -51,7 +51,7 @@ namespace OperatorOverloading.Model {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,38 +61,47 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot; Currecy MisMatch Occured &quot;.
+        ///   Looks up a localized string similar to Currecy MisMatch Occured .
         /// </summary>
-        internal static string CurrencyMismatch {
+        public static string CurrencyMismatch {
             get {
                 return ResourceManager.GetString("CurrencyMismatch", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot; Please check your Amount Input &quot;.
+        ///   Looks up a localized string similar to Please check your Amount Input .
         /// </summary>
-        internal static string InvalidAmountInput {
+        public static string InvalidAmountInput {
             get {
                 return ResourceManager.GetString("InvalidAmountInput", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot; Please check your Currency Input&quot;.
+        ///   Looks up a localized string similar to Please check your Currency Input.
         /// </summary>
-        internal static string InvalidCurrency {
+        public static string InvalidCurrency {
             get {
                 return ResourceManager.GetString("InvalidCurrency", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot; Sum is beyond storage &quot;.
+        ///   Looks up a localized string similar to Sum is beyond storage.
         /// </summary>
-        internal static string InvalidSum {
+        public static string InvalidSum {
             get {
                 return ResourceManager.GetString("InvalidSum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object pased is null object.
+        /// </summary>
+        public static string ObjectNull {
+            get {
+                return ResourceManager.GetString("ObjectNull", resourceCulture);
             }
         }
     }
