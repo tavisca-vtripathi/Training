@@ -31,7 +31,7 @@ namespace OperatorOverloading.Host
                   throw new System.Exception("Invalid Currency Name");
                 }
 
-                double ans = con.GetConversion(sourceCurrency, targetCurrency);
+                double ans = con.GetConversion(sourceCurrency, targetCurrency); // this is the conversion function which is used to fetch exchange rates
                 Console.WriteLine(ans);
                 Console.ReadKey();
             }
