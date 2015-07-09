@@ -18,9 +18,9 @@ namespace OperatorOverloading.Model
             {
                 if (value < 0)
                 {
-                    throw new Exception (Resource.InvalidAmountInput);
+                    throw new Exception(Resource.InvalidAmountInput);
                 }
-                if (double.IsPositiveInfinity(value))
+                if (double.IsPositiveInfinity(value) || value > double.MaxValue)
                 {
                     throw new Exception(Resource.InvalidAmountInput);
                 }
@@ -33,7 +33,7 @@ namespace OperatorOverloading.Model
             get { return _currency; }
             private set
             {
-                if (string.IsNullOrWhiteSpace(value)||string.IsNullOrEmpty(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
                     throw new Exception(Resource.InvalidCurrency);
                 }
@@ -47,12 +47,12 @@ namespace OperatorOverloading.Model
             Currency = currency;
         }
 
-        public Money(string inputAmount)
+        public Money(string inputAmount)   // input expexcted as 100 USD   
         {
 
-            if (string.IsNullOrWhiteSpace(inputAmount)||string.IsNullOrEmpty(inputAmount))
+            if (string.IsNullOrWhiteSpace(inputAmount))
             {
-                throw new Exception (Resource.InvalidInput);
+                throw new Exception(Resource.InvalidInput);
             }
 
             var amountArr = inputAmount.Split(' ');
@@ -60,7 +60,7 @@ namespace OperatorOverloading.Model
 
             if (amountArr.Length != 2)
             {
-               throw new Exception (Resource.InvalidAmountInput);
+                throw new Exception(Resource.InvalidAmountInput);
             }
 
             if (double.TryParse(amountArr[0], out amount))
@@ -79,7 +79,7 @@ namespace OperatorOverloading.Model
         {
             if (obj1 == null || obj2 == null)
             {
-                throw new Exception (Resource.ObjectNull);
+                throw new Exception(Resource.ObjectNull);
             }
             if (obj1.Currency.Equals(obj2.Currency, StringComparison.CurrentCultureIgnoreCase))
             {
@@ -88,7 +88,7 @@ namespace OperatorOverloading.Model
             }
             else
             {
-                throw new Exception (Resource.CurrencyMismatch);
+                throw new Exception(Resource.CurrencyMismatch);
             }
         }
 

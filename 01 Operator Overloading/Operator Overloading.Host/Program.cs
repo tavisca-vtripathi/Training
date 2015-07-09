@@ -17,13 +17,13 @@ namespace OperatorOverloading.Host
             {
                 Console.Write("Enter First Amount and  Currency: ");
 
-                Money amount1 = new Money(Console.ReadLine());
+                var amount1 = new Money(Console.ReadLine());
 
                 Console.Write("Enter Second Amount and  Currency: ");
-                Money amount2 = new Money(Console.ReadLine());
-                var amount3= amount1 + amount2;
-                Console.Write("The Total Amount is: "+amount3);
-                
+                var amount2 = new Money(Console.ReadLine());
+                var amount3 = amount1 + amount2;
+                Console.Write("The Total Amount is: " + amount3);
+
             }
 
             catch (Exception e)
