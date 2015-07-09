@@ -58,6 +58,10 @@
       <Project>{65206220-df29-4fdb-874f-c5631bf66ca7}</Project>
       <Name>OperatorOverloading.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OperatorOverloading.dbl\OperatorOverloading.dbl.csproj">
+      <Project>{79764d81-baa6-4d50-a873-73034cf5d7ed}</Project>
+      <Name>OperatorOverloading.dbl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

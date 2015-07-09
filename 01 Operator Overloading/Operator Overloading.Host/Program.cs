@@ -3,35 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OperatorOverloading.dbl;
 using OperatorOverloading.Model;
-
 namespace OperatorOverloading.Host
 {
-    public class Program                                                     //Main Program
+    class Program
     {
-
-
         public static void Main(string[] args)
         {
-            try
+          try
             {
-                Console.Write("Enter First Amount and  Currency: ");
-                var amount1 = new Money(Console.ReadLine());
-                Console.Write("Enter Second Amount and  Currency: ");
-                var amount2 = new Money(Console.ReadLine());
-                var amount3 = amount1 + amount2;
-                Console.Write("The Total Amount is: " + amount3);
-            }
+                Converter con = new Converter();
+                string sourceCurrency;
+                string targetCurrency;
 
-            catch (Exception e)
+                Console.WriteLine("Enter Source Currency");
+                sourceCurrency = Console.ReadLine().ToUpper();
+                if (sourceCurrency.Length != 3 || string.IsNullOrWhiteSpace(sourceCurrency))
+                {
+                 throw new System.Exception("Invalid Currency Name");
+                }
+
+                Console.WriteLine("Enter Target Currency");
+                targetCurrency = Console.ReadLine().ToUpper();
+                if (targetCurrency.Length != 3 || string.IsNullOrWhiteSpace(targetCurrency))
+                {
+                  throw new System.Exception("Invalid Currency Name");
+                }
+
+                double ans = con.GetConversion(sourceCurrency, targetCurrency);
+                Console.WriteLine(ans);
+                Console.ReadKey();
+            }
+           catch (Exception e)
             {
-                Console.WriteLine("OOPS!! There is some error..!");
-                Console.WriteLine(e.Message);
+               Console.WriteLine(e.Message);
+                Console.ReadKey();
+
             }
-            Console.ReadLine();
-
-
-
         }
     }
 }
