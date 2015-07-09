@@ -126,6 +126,9 @@
   <data name="InvalidCurrency" xml:space="preserve">
     <value>Please check your Currency Input</value>
   </data>
+  <data name="InvalidInput" xml:space="preserve">
+    <value>Input given is Invalid</value>
+  </data>
   <data name="InvalidSum" xml:space="preserve">
     <value>Sum is beyond storage</value>
   </data>

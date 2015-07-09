@@ -88,6 +88,15 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input given is Invalid.
+        /// </summary>
+        public static string InvalidInput {
+            get {
+                return ResourceManager.GetString("InvalidInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sum is beyond storage.
         /// </summary>
         public static string InvalidSum {

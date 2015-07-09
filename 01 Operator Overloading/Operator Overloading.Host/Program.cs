@@ -9,36 +9,27 @@ namespace OperatorOverloading.Host
 {
     public class Program                                                     //Main Program
     {
-        static void Main(string[] args)
+
+
+        public static void Main(string[] args)
         {
-
-            try                                                         // try block to check validation on input string and currency match
+            try
             {
+                Console.Write("Enter First Amount and  Currency: ");
 
-                Console.WriteLine("Enter the Amount :");
-                double amountOne;
-                if (double.TryParse(Console.ReadLine(), out amountOne) == false)    //Checking validity of amount input
-                {
-                    throw new System.Exception(Resource.InvalidAmountInput);
-                }
-                Console.WriteLine("Enter Currency :");
-                string currency = Console.ReadLine();
-                Money firstMoneyObject = new Money(amountOne, currency);               //Constructor called for assigning values
-                Console.WriteLine("Enter the Amount :");
-                double amountTwo;
-                if (double.TryParse(Console.ReadLine(), out amountTwo) == false)
-                {
-                    throw new System.Exception(Resource.InvalidAmountInput);
-                }
-                Console.WriteLine("Enter Currency :");
-                string currencyTwo = Console.ReadLine();
-                Money secondMoneyObject = new Money(amountTwo, currencyTwo);
-                Money sumMoneyObject = firstMoneyObject + secondMoneyObject;                              //Operator Overloading
-                Console.WriteLine("Sum is : " + sumMoneyObject.Amount + " " + sumMoneyObject.Currency);
+                Money amount1 = new Money(Console.ReadLine());
+
+                Console.Write("Enter Second Amount and  Currency: ");
+                Money amount2 = new Money(Console.ReadLine());
+                var amount3= amount1 + amount2;
+                Console.Write("The Total Amount is: "+amount3);
+                
             }
-            catch (Exception ex)                                                                         // Catching exception 
+
+            catch (Exception e)
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("OOPS!! There is some error..!");
+                Console.WriteLine(e.Message);
             }
             Console.ReadLine();
         }

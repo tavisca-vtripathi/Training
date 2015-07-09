@@ -10,71 +10,91 @@ namespace OperatorOverloading.Model
     {
         private double _amount;
         private string _currency;
-        public double Amount               //Property for amount
-        {
-            get
-            {
-                return _amount;
-            }
-            set
-            {
-                if (value < 0 || double.IsPositiveInfinity(value))
-                {
-                    throw new System.Exception(Resource.InvalidAmountInput);
-                }
-                this._amount = value;
-            }
-        }
-        public string Currency           //Property for Currency
-        {
-            get
-            {
-                return _currency;
 
-            }
-            set
+        public double Amount
+        {
+            get { return _amount; }
+            private set
             {
-                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+                if (value < 0)
                 {
-                    throw new System.Exception(Resource.InvalidCurrency);
+                    throw new Exception (Resource.InvalidAmountInput);
                 }
-                this._currency = value;
+                if (double.IsPositiveInfinity(value))
+                {
+                    throw new Exception(Resource.InvalidAmountInput);
+                }
+                _amount = value;
             }
         }
-        public Money(double amount, string currency)                       //Constructor for receiving inputs
+
+        public string Currency
+        {
+            get { return _currency; }
+            private set
+            {
+                if (string.IsNullOrWhiteSpace(value)||string.IsNullOrEmpty(value))
+                {
+                    throw new Exception(Resource.InvalidCurrency);
+                }
+                _currency = value;
+            }
+        }
+
+        public Money(double amount, string currency)
         {
             Amount = amount;
             Currency = currency;
         }
-        public static Money operator +(Money money1, Money money2)                          //operator overloading function    
-        {
-            if (money1 == null || money2 == null)
-            {
 
-                throw new ArgumentException(Resource.ObjectNull);
+        public Money(string inputAmount)
+        {
+
+            if (string.IsNullOrWhiteSpace(inputAmount)||string.IsNullOrEmpty(inputAmount))
+            {
+                throw new Exception (Resource.InvalidInput);
             }
 
-            if (money1.Currency.Equals(money2.Currency, StringComparison.CurrentCultureIgnoreCase))
+            var amountArr = inputAmount.Split(' ');
+            double amount;
+
+            if (amountArr.Length != 2)
             {
+               throw new Exception (Resource.InvalidAmountInput);
+            }
 
-                double MoneySum;
-
-                MoneySum = money1.Amount + money2.Amount;
-                if (MoneySum > double.MaxValue)
-                {
-                    throw new System.Exception(Resource.InvalidSum);
-                }
-                else
-                {
-                    return new Money(MoneySum, money1.Currency);
-                }
+            if (double.TryParse(amountArr[0], out amount))
+            {
+                Amount = amount;
             }
             else
             {
-                throw new System.Exception(Resource.CurrencyMismatch);                                                                     //throw exception for currency mismatch
+                throw new Exception(Resource.InvalidAmountInput);
             }
 
+            Currency = amountArr[1];
+        }
 
+        public static Money operator +(Money obj1, Money obj2)
+        {
+            if (obj1 == null || obj2 == null)
+            {
+                throw new Exception (Resource.ObjectNull);
+            }
+            if (obj1.Currency.Equals(obj2.Currency, StringComparison.CurrentCultureIgnoreCase))
+            {
+                double totalAmount = obj1.Amount + obj2.Amount;
+                return new Money(totalAmount, obj1.Currency);
+            }
+            else
+            {
+                throw new Exception (Resource.CurrencyMismatch);
+            }
+        }
+
+        public override string ToString()
+        {
+            return Amount + " " + Currency;
         }
     }
 }
