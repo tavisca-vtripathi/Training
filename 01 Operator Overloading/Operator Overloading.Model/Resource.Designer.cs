@@ -70,6 +70,15 @@ namespace OperatorOverloading.Model {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string DivideByZero {
+            get {
+                return ResourceManager.GetString("DivideByZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please check your Amount Input .
         /// </summary>
         public static string InvalidAmountInput {
@@ -111,6 +120,15 @@ namespace OperatorOverloading.Model {
         public static string ObjectNull {
             get {
                 return ResourceManager.GetString("ObjectNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total amount is out of range..
+        /// </summary>
+        public static string OutOfRange {
+            get {
+                return ResourceManager.GetString("OutOfRange", resourceCulture);
             }
         }
     }

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OperatorOverloading.dbl")]
+[assembly: AssemblyTitle("OperatorOverLoading.dbl")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("OperatorOverloading.dbl")]
+[assembly: AssemblyProduct("OperatorOverLoading.dbl")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e19e11d6-bd8c-4453-9410-c0843cd07a10")]
+[assembly: Guid("5abf43d8-5b85-4beb-bfaa-473793a3b465")]
 
 // Version information for an assembly consists of the following four values:
 //

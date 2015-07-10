@@ -8,36 +8,24 @@ using OperatorOverloading.Model;
 namespace OperatorOverloading.Host
 {
     class Program
-    {
+    { 
         public static void Main(string[] args)
         {
-          try
+            try
             {
-                Converter con = new Converter();
-                string sourceCurrency;
-                string targetCurrency;
-
-                Console.WriteLine("Enter Source Currency");
-                sourceCurrency = Console.ReadLine().ToUpper();
-                if (sourceCurrency.Length != 3 || string.IsNullOrWhiteSpace(sourceCurrency))
-                {
-                 throw new System.Exception("Invalid Currency Name");
-                }
-
-                Console.WriteLine("Enter Target Currency");
-                targetCurrency = Console.ReadLine().ToUpper();
-                if (targetCurrency.Length != 3 || string.IsNullOrWhiteSpace(targetCurrency))
-                {
-                  throw new System.Exception("Invalid Currency Name");
-                }
-
-                double ans = con.GetConversion(sourceCurrency, targetCurrency); // this is the conversion function which is used to fetch exchange rates
-                Console.WriteLine(ans);
+                Console.WriteLine("Enter the amount in the form of <100 USD>");
+                var amount = new Money(Console.ReadLine());
+                Console.WriteLine("Enter the currency in which you want to convert");
+                string toCurrency = Console.ReadLine();
+                var output = amount.ConvertCurrency(toCurrency.ToUpper());
+                Console.WriteLine("your Converted amount is "+output+" "+toCurrency);
                 Console.ReadKey();
+               
             }
-           catch (Exception e)
+            catch (Exception e)
             {
-               Console.WriteLine(e.Message);
+                Console.WriteLine("OOPS..!! There occur some error");
+                Console.WriteLine(e.Message);
                 Console.ReadKey();
 
             }
