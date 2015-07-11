@@ -46,7 +46,7 @@ namespace OperatorOverloading.Model
         public Money(double amount, string currency)
         {
             Amount = amount;
-            Currency = currency.ToUpper();
+            Currency = currency;
         }
 
         public Money(string inputAmount)   // input expexcted as 100 USD   
@@ -82,21 +82,22 @@ namespace OperatorOverloading.Model
         /// </summary>
         /// <param name="toCurrency"></param>
         /// <returns></returns>
-        public double ConvertCurrency(string toCurrency)
+        public Money ConvertCurrency(string toCurrency)
         {
+            
             if (string.IsNullOrWhiteSpace(toCurrency) || toCurrency.Length != 3 || Regex.IsMatch(toCurrency, @"^[a-zA-Z]+$") == false)
             {
                 throw new System.Exception(Resource.InvalidCurrency);
             }
-            Converter cs = new Converter();
-            var exchangerate = cs.GetConversion(this.Currency, toCurrency);
+            var convert=new ConvertCurrency();
+            var exchangerate = convert.GetConversionRate(this.Currency, toCurrency);
             var totalAmount = exchangerate * this.Amount;
             if (double.IsPositiveInfinity(totalAmount) || totalAmount > double.MaxValue)
             {
                 throw new System.Exception(Resource.OutOfRange);
 
             }
-            return (totalAmount);
+            return new Money(totalAmount, toCurrency);
 
 
         }

@@ -7,11 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model", "01 Operator Overloading\Operator Overloading.Model\OperatorOverloading.Model.csproj", "{65206220-DF29-4FDB-874F-C5631BF66CA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{4A419221-5C92-4711-9F67-9EE7A580BA3B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverLoading.dbl", "01 Operator Overloading\OperatorOverloading.dbl\OperatorOverLoading.dbl\OperatorOverLoading.dbl.csproj", "{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.parse", "OperatorOverloading.parse\OperatorOverloading.parse.csproj", "{4360319D-31A6-4D23-ADA7-BD2C54497A0D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator Overloading.Parse", "Operator Overloading.Parse\Operator Overloading.Parse.csproj", "{BBC892AC-1014-4162-A35D-066804BE7134}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +25,14 @@ Global
 		{65206220-DF29-4FDB-874F-C5631BF66CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65206220-DF29-4FDB-874F-C5631BF66CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65206220-DF29-4FDB-874F-C5631BF66CA7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A419221-5C92-4711-9F67-9EE7A580BA3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A419221-5C92-4711-9F67-9EE7A580BA3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A419221-5C92-4711-9F67-9EE7A580BA3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A419221-5C92-4711-9F67-9EE7A580BA3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4360319D-31A6-4D23-ADA7-BD2C54497A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4360319D-31A6-4D23-ADA7-BD2C54497A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4360319D-31A6-4D23-ADA7-BD2C54497A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4360319D-31A6-4D23-ADA7-BD2C54497A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC892AC-1014-4162-A35D-066804BE7134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC892AC-1014-4162-A35D-066804BE7134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC892AC-1014-4162-A35D-066804BE7134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC892AC-1014-4162-A35D-066804BE7134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,8 +40,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{378C4511-74DC-41E3-989C-6073EA6620CE} = {58973CF3-5240-4677-B066-0C5B4F50E264}
 		{65206220-DF29-4FDB-874F-C5631BF66CA7} = {58973CF3-5240-4677-B066-0C5B4F50E264}
-		{4A419221-5C92-4711-9F67-9EE7A580BA3B} = {58973CF3-5240-4677-B066-0C5B4F50E264}
 		{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770} = {58973CF3-5240-4677-B066-0C5B4F50E264}
-		{4360319D-31A6-4D23-ADA7-BD2C54497A0D} = {58973CF3-5240-4677-B066-0C5B4F50E264}
+		{BBC892AC-1014-4162-A35D-066804BE7134} = {58973CF3-5240-4677-B066-0C5B4F50E264}
 	EndGlobalSection
 EndGlobal

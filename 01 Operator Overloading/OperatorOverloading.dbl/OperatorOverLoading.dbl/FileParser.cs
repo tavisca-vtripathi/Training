@@ -8,13 +8,11 @@ namespace OperatorOverloading.dbl
 {
     public class FileParser
     {
-
-        
         /// <summary>
         /// Parsing data function fetches Json string and returns json string after spliiting it into Dictionary<CurrencyName , Rate >
         /// </summary>
         /// <returns></returns>
-        public static Dictionary<string, double> ParsingData()
+        public static Dictionary<string, double> JsonDataParser()
         {
            Dictionary<string, double> finalData=new Dictionary<string,double>();
             string line;
@@ -27,19 +25,19 @@ namespace OperatorOverloading.dbl
 
             }
             file.Close();
-            string[] blocks = completeData.Split('{', '}');
+            string[] blocks = completeData.Split('{', '}');     
             string[] sourceFinder = blocks[1].Split(',');
             string[] keyValue;
 
-            string[] currencyRate = blocks[2].Split(',');
+            string[] currencyRate = blocks[2].Split(',');        // Split Currency inyo array after each ","
             foreach (string individualRates in currencyRate)
             {
 
-                keyValue = individualRates.Split(':');
-                keyValue[0] = keyValue[0].Trim();
-                keyValue[0] = keyValue[0].Remove(0, 4);
+                keyValue = individualRates.Split(':');    //This split removes currency name and exchange rates in two parts
+                keyValue[0] = keyValue[0].Trim();          // Trims the splitted parts
+                keyValue[0] = keyValue[0].Remove(0, 4);        //Removes Source name USD from the Json string
                 keyValue[0] = keyValue[0].Remove(keyValue[0].Length - 1, 1);
-                finalData.Add(keyValue[0], double.Parse(keyValue[1]));
+                finalData.Add(keyValue[0], double.Parse(keyValue[1]));     //Unhandled exception will occur if Json parser string is distorted due to extra space in double part or redundant currency name
             }
             return finalData;
         }

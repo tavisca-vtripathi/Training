@@ -44,9 +44,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\OperatorOverloading.parse\OperatorOverloading.parse.csproj">
-      <Project>{4360319d-31a6-4d23-ada7-bd2c54497a0d}</Project>
-      <Name>OperatorOverloading.parse</Name>
+    <ProjectReference Include="..\..\..\Operator Overloading.Parse\Operator Overloading.Parse.csproj">
+      <Project>{bbc892ac-1014-4162-a35d-066804be7134}</Project>
+      <Name>Operator Overloading.Parse</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

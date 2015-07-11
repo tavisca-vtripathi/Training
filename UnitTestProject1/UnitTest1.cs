@@ -4,17 +4,7 @@ using OperatorOverloading.Model;
 
 namespace OperatorOverloading.UnitTest
 {
-    [TestClass]
-    public class OperatorOverloadingUnitTest
-    {
-        [TestMethod]
-        public void TestMethod1()
-        {
-            var money = new Money(100, "USD");
-            var amount = money.ConvertCurrency("INR");
-
-            Assert.IsTrue(amount == 6352.5002);
-        }
+    
 
         [TestMethod]
         [ExpectedException(typeof(System.Exception))]
