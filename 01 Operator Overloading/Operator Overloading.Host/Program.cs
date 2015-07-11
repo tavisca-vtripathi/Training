@@ -7,7 +7,7 @@ using OperatorOverloading.dbl;
 using OperatorOverloading.Model;
 namespace OperatorOverloading.Host
 {
-    class Program
+   public  class Program
     { 
         public static void Main(string[] args)
         {
