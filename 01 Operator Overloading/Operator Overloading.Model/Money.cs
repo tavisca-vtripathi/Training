@@ -84,12 +84,12 @@ namespace OperatorOverloading.Model
         /// <returns></returns>
         public Money ConvertCurrency(string toCurrency)
         {
-            
+
             if (string.IsNullOrWhiteSpace(toCurrency) || toCurrency.Length != 3 || Regex.IsMatch(toCurrency, @"^[a-zA-Z]+$") == false)
             {
                 throw new System.Exception(Resource.InvalidCurrency);
             }
-            var convert=new ConvertCurrency();
+            var convert = new ConvertCurrency();
             var exchangerate = convert.GetConversionRate(this.Currency, toCurrency);
             var totalAmount = exchangerate * this.Amount;
             if (double.IsPositiveInfinity(totalAmount) || totalAmount > double.MaxValue)

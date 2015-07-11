@@ -14,7 +14,7 @@ namespace OperatorOverloading.dbl
         /// <returns></returns>
         public static Dictionary<string, double> JsonDataParser()
         {
-           Dictionary<string, double> finalData=new Dictionary<string,double>();
+            Dictionary<string, double> finalData = new Dictionary<string, double>();
             string line;
             string completeData = "";
             System.IO.StreamReader file =
@@ -25,7 +25,7 @@ namespace OperatorOverloading.dbl
 
             }
             file.Close();
-            string[] blocks = completeData.Split('{', '}');     
+            string[] blocks = completeData.Split('{', '}');
             string[] sourceFinder = blocks[1].Split(',');
             string[] keyValue;
 

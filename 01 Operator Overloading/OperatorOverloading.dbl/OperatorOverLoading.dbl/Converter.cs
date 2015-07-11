@@ -39,12 +39,12 @@ namespace OperatorOverloading.dbl
                 return 1;
             }
             double multiplier;
-           
-            if(finalData.TryGetValue(currency, out multiplier)==false)
+
+            if (finalData.TryGetValue(currency, out multiplier) == false)
             {
                 throw new System.Exception("Currency not found..!!");
             }
-            
+
             return multiplier;
         }
 

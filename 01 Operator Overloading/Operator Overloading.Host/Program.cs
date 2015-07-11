@@ -7,8 +7,8 @@ using OperatorOverloading.dbl;
 using OperatorOverloading.Model;
 namespace OperatorOverloading.Host
 {
-   public  class Program
-    { 
+    public class Program
+    {
         public static void Main(string[] args)
         {
             try
@@ -18,9 +18,9 @@ namespace OperatorOverloading.Host
                 Console.WriteLine("Enter the currency in which you want to convert");
                 string toCurrency = Console.ReadLine();
                 var output = amount.ConvertCurrency(toCurrency.ToUpper());
-                Console.WriteLine("your Converted amount is "+output);
+                Console.WriteLine("your Converted amount is " + output);
                 Console.ReadKey();
-               
+
             }
             catch (Exception e)
             {
