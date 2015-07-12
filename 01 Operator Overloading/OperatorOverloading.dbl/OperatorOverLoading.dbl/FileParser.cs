@@ -15,10 +15,11 @@ namespace OperatorOverloading.dbl
         /// <returns></returns>
         public static Dictionary<string, double> JsonDataParser()
         {
+            string address = ConfigurationManager.AppSettings["address"];
             Dictionary<string, double> finalData = new Dictionary<string, double>();
             string completeData = "";
             System.IO.StreamReader file =
-               new System.IO.StreamReader("D:\\Training\\01 Operator Overloading\\OperatorOverloading.dbl\\Data.txt");
+               new System.IO.StreamReader(address);
             completeData = file.ReadToEnd();
             file.Close();
             string[] blocks = completeData.Split('{', '}');
