@@ -17,38 +17,26 @@ namespace OperatorOverloading.dbl
         /// <returns></returns>
         public double GetConversionRate(string sourceCurrency, string targetCurrency)
         {
-            double multiplier1 = GetMultiplier(sourceCurrency);
-            double multiplier2 = GetMultiplier(targetCurrency);
-            if (multiplier1 == 0)
-            {
-                throw new System.Exception("Currency one exchange rate is zero");
-            }
-            return (multiplier2 / multiplier1);
-        }
-        /// <summary>
-        /// It expects input as (AFN) and It returns currency's exchange rate as comparison to USD
-        /// </summary>
-        /// <param name="currency"></param>
-        /// <returns></returns>
-        public static double GetMultiplier(string currency)
-        {
+            double rate;
             var finalData = FileParser.JsonDataParser();
-            var fs = new FileParser();
-            if (currency.Equals("USD"))
+            if(sourceCurrency!="USD" && targetCurrency != "USD")
             {
-                return 1;
+                throw new System.Exception("Invalid Currency");
             }
-            double multiplier;
-
-            if (finalData.TryGetValue(currency, out multiplier) == false)
+            else if (finalData.TryGetValue(targetCurrency, out rate)==false)
+            { 
+            throw new System.Exception("Please check your currency input");
+            
+            }
+            else if (sourceCurrency.Equals("USD"))
             {
-                throw new System.Exception("Currency not found..!!");
+                return rate = finalData[targetCurrency];
             }
-
-            return multiplier;
+            else
+            {
+                return rate = (1 / finalData[targetCurrency]);
+            }
+            
         }
-
-
     }
-
 }
