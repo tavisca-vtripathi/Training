@@ -8,6 +8,6 @@ namespace OperatorOverloading.Parse
 {
     public interface ICurencyConverter
     {   //Interface for the conversion function;
-        double GetConversionRate(string from, string to);
+        double Convert(string from, string to);
     }
 }

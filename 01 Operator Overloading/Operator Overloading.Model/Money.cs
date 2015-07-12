@@ -90,7 +90,7 @@ namespace OperatorOverloading.Model
                 throw new System.Exception(Resource.InvalidCurrency);
             }
             var convert = new ConvertCurrency();
-            var exchangerate = convert.GetConversionRate(this.Currency, toCurrency);
+            var exchangerate = convert.Convert(this.Currency, toCurrency);
             var totalAmount = exchangerate * this.Amount;
             if (double.IsPositiveInfinity(totalAmount) || totalAmount > double.MaxValue)
             {

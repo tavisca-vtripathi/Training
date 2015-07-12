@@ -15,7 +15,7 @@ namespace OperatorOverloading.dbl
         /// <param name="sourceCurrency"></param>
         /// <param name="targetCurrency"></param>
         /// <returns></returns>
-        public double GetConversionRate(string sourceCurrency, string targetCurrency)
+        public double Convert(string sourceCurrency, string targetCurrency)
         {
             double rate;
             var finalData = FileParser.JsonDataParser();
