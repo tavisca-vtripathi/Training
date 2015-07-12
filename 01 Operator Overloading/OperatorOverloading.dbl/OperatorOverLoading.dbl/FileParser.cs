@@ -19,11 +19,12 @@ namespace OperatorOverloading.dbl
             string completeData = "";
             System.IO.StreamReader file =
                new System.IO.StreamReader(@"D:\Training\01 Operator Overloading\OperatorOverloading.dbl\Data.txt");
-            while ((line = file.ReadLine()) != null)
-            {
-                completeData += line;
+            completeData = file.ReadToEnd();
+            //while ((line = file.ReadLine()) != null)
+            //{
+            //    completeData += line;
 
-            }
+            //}
             file.Close();
             string[] blocks = completeData.Split('{', '}');
             string[] sourceFinder = blocks[1].Split(',');
