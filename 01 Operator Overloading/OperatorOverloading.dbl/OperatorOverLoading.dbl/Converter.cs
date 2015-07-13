@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using OperatorOverloading.Parse;
 using System.Configuration;
 
-namespace OperatorOverloading.dbl
+namespace OperatorOverloading.Dbl
 {
     public class ConvertCurrency : ICurencyConverter
     {
@@ -20,25 +20,25 @@ namespace OperatorOverloading.dbl
         {
             double rate;
             string source = ConfigurationManager.AppSettings["source"];
-            var finalData = FileParser.JsonDataParser();
+            var exchangeRate = FileParser.JsonDataParser();
             if (sourceCurrency != source && targetCurrency != source)
             {
                 throw new System.Exception("Invalid Currency");
             }
-            else if (finalData.TryGetValue(targetCurrency, out rate)==false)
-            { 
-            throw new System.Exception("Please check your currency input");
-            
+            else if (exchangeRate.TryGetValue(targetCurrency, out rate) == false)
+            {
+                throw new System.Exception("Please check your currency input");
+
             }
             else if (sourceCurrency.Equals(source))
             {
-                return rate = finalData[targetCurrency];
+                return rate = exchangeRate[targetCurrency];
             }
             else
             {
-                return rate = (1 / finalData[targetCurrency]);
+                return rate = (1 / exchangeRate[targetCurrency]);
             }
-            
+
         }
     }
 }

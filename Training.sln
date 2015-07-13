@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Host", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverloading.Model", "01 Operator Overloading\Operator Overloading.Model\OperatorOverloading.Model.csproj", "{65206220-DF29-4FDB-874F-C5631BF66CA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverLoading.dbl", "01 Operator Overloading\OperatorOverloading.dbl\OperatorOverLoading.dbl\OperatorOverLoading.dbl.csproj", "{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperatorOverLoading.Dbl", "01 Operator Overloading\OperatorOverloading.dbl\OperatorOverLoading.dbl\OperatorOverLoading.Dbl.csproj", "{9B82765D-3FE2-4D9F-8F2A-F3B93EAD2770}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator Overloading.Parse", "Operator Overloading.Parse\Operator Overloading.Parse.csproj", "{BBC892AC-1014-4162-A35D-066804BE7134}"
 EndProject

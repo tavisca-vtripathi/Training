@@ -59,9 +59,9 @@
       <Project>{65206220-df29-4fdb-874f-c5631bf66ca7}</Project>
       <Name>OperatorOverloading.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OperatorOverloading.dbl\OperatorOverLoading.dbl\OperatorOverLoading.dbl.csproj">
+    <ProjectReference Include="..\OperatorOverloading.dbl\OperatorOverLoading.dbl\OperatorOverLoading.Dbl.csproj">
       <Project>{9b82765d-3fe2-4d9f-8f2a-f3b93ead2770}</Project>
-      <Name>OperatorOverLoading.dbl</Name>
+      <Name>OperatorOverLoading.Dbl</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

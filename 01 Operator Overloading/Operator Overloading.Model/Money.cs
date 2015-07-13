@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OperatorOverloading.dbl;
+using OperatorOverloading.Dbl;
 using System.Text.RegularExpressions;
 
 namespace OperatorOverloading.Model
