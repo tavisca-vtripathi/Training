@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OperatorOverloading.Parse;
+using System.Configuration;
 
 namespace OperatorOverloading.dbl
 {
@@ -18,8 +19,9 @@ namespace OperatorOverloading.dbl
         public double Convert(string sourceCurrency, string targetCurrency)
         {
             double rate;
+            string source = ConfigurationManager.AppSettings["source"];
             var finalData = FileParser.JsonDataParser();
-            if(sourceCurrency!="USD" && targetCurrency != "USD")
+            if (sourceCurrency != source && targetCurrency != source)
             {
                 throw new System.Exception("Invalid Currency");
             }
@@ -28,7 +30,7 @@ namespace OperatorOverloading.dbl
             throw new System.Exception("Please check your currency input");
             
             }
-            else if (sourceCurrency.Equals("USD"))
+            else if (sourceCurrency.Equals(source))
             {
                 return rate = finalData[targetCurrency];
             }
