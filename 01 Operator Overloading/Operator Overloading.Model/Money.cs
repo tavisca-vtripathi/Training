@@ -82,7 +82,7 @@ namespace OperatorOverloading.Model
         /// </summary>
         /// <param name="toCurrency"></param>
         /// <returns></returns>
-        public Money ConvertCurrency(string toCurrency)
+        public Money Convert(string toCurrency)
         {
 
             if (string.IsNullOrWhiteSpace(toCurrency) || toCurrency.Length != 3 || Regex.IsMatch(toCurrency, @"^[a-zA-Z]+$") == false)

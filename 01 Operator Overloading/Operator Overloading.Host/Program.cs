@@ -17,7 +17,7 @@ namespace OperatorOverloading.Host
                 var amount = new Money(Console.ReadLine());
                 Console.WriteLine("Enter the currency in which you want to convert");
                 string toCurrency = Console.ReadLine();
-                var output = amount.ConvertCurrency(toCurrency.ToUpper());
+                var output = amount.Convert(toCurrency.ToUpper());
                 Console.WriteLine("your Converted amount is " + output);
                 Console.ReadKey();
 
