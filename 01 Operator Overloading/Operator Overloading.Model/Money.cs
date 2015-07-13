@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OperatorOverloading.Dbl;
+using System.Text.RegularExpressions;
 
 namespace OperatorOverloading.Model
 {
@@ -37,7 +39,7 @@ namespace OperatorOverloading.Model
                 {
                     throw new Exception(Resource.InvalidCurrency);
                 }
-                _currency = value;
+                _currency = value.ToUpper();
             }
         }
 
@@ -63,10 +65,10 @@ namespace OperatorOverloading.Model
                 throw new Exception(Resource.InvalidAmountInput);
             }
 
-            if (double.TryParse(amountArr[0], out amount)==false)
+            if (double.TryParse(amountArr[0], out amount) == false)
             {
                 throw new Exception(Resource.InvalidAmountInput);
-                
+
             }
             else
             {
@@ -75,7 +77,32 @@ namespace OperatorOverloading.Model
 
             Currency = amountArr[1];
         }
+        /// <summary>
+        /// It expects input as (INR) i.e the currency to whic user wants to convert
+        /// </summary>
+        /// <param name="toCurrency"></param>
+        /// <returns></returns>
+        public Money Convert(string toCurrency)
+        {
 
+            if (string.IsNullOrWhiteSpace(toCurrency) || toCurrency.Length != 3 || Regex.IsMatch(toCurrency, @"^[a-zA-Z]+$") == false)
+            {
+                throw new System.Exception(Resource.InvalidCurrency);
+            }
+            var convert = new ConvertCurrency();
+
+
+            var exchangerate = convert.Convert(this.Currency, toCurrency);
+            var totalAmount = exchangerate * this.Amount;
+            if (double.IsPositiveInfinity(totalAmount) || totalAmount > double.MaxValue)
+            {
+                throw new System.Exception(Resource.OutOfRange);
+
+            }
+            return new Money(totalAmount, toCurrency);
+
+
+        }
         public static Money operator +(Money obj1, Money obj2)
         {
             if (obj1 == null || obj2 == null)
@@ -100,16 +127,3 @@ namespace OperatorOverloading.Model
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
