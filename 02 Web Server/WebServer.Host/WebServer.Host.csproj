@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2FF1B4DD-C901-4AF1-A4F1-405383E93290}</ProjectGuid>
+    <ProjectGuid>{8DA4793C-52DA-40F6-82A7-E93EA7BF16FD}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>WebServer.Host</RootNamespace>
@@ -45,16 +45,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
+    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebServer.Model\WebServer.Model.csproj">
-      <Project>{9a681532-1ba9-4a4a-bb04-85666d5b7e2f}</Project>
+      <Project>{24fa931f-3e02-4efe-b324-454ee69ced50}</Project>
       <Name>WebServer.Model</Name>
     </ProjectReference>
   </ItemGroup>

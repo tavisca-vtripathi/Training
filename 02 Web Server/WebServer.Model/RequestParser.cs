@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace WebServer.Model
 {
     public class RequestParser
     {
-        
+
         public string HttpMethod;
         public string HttpUrl;
         public string HttpProtocolVersion;
@@ -16,8 +17,11 @@ namespace WebServer.Model
 
         public void Parser(string requestString)
         {
+
             try
             {
+                if (string.IsNullOrWhiteSpace(requestString))
+                    return;
                 string[] tokens = requestString.Split(' ');
 
                 tokens[1] = tokens[1].Replace("/", "\\");
@@ -27,7 +31,8 @@ namespace WebServer.Model
             }
             catch (Exception)
             {
-                throw new System.Exception(Resource.BadRequest);
+                Thread.Yield();
+
             }
         }
     }

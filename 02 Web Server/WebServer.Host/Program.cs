@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebServer.Model;
 
-namespace WebServer.Host
+namespace WebServer.Model
 {
     class Program
     {
@@ -13,14 +13,13 @@ namespace WebServer.Host
         {
             try
             {
-                Console.WriteLine("Starting webserver...");
-                Listener listener = new Listener();
-                listener.Start(8080, @"D:\WebSource\startbootstrap-sb-admin-1.0.3"); 
+                Listener listener = new Listener(8080);
+                listener.Start();
+
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                Console.ReadKey();
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace WebServer.Model
 {
@@ -69,6 +70,8 @@ namespace WebServer.Model
             }
             catch
             {
+                Thread.Yield();
+
             }
         }
 

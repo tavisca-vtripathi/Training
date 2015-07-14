@@ -1,67 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading;
+using System.IO;
+using System.Diagnostics;
+
+
 
 namespace WebServer.Model
 {
     public class Listener
     {
-        // check for already running
+
+        private TcpListener _listener;
         private bool _running = false;
-        private int _timeout = 5;
-        private Socket _serverSocket;
-        TcpListener tcp = new TcpListener(IPAddress.Any, 8080);
 
 
-        // Directory to host our contents
-        private string _contentPath;
-        private void InitializeSocket(int port, string contentPath) //create socket
+        public Listener(int port)
         {
-            _serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            _serverSocket.Bind(new IPEndPoint(IPAddress.Any, port));
-            _serverSocket.Listen(100);    //no of request in queue
-            _serverSocket.ReceiveTimeout = _timeout;
-            _serverSocket.SendTimeout = _timeout;
-            _running = true; //socket created
-            _contentPath = contentPath;
+            _listener = new TcpListener(IPAddress.Any, port);
         }
-        public void Start(int port, string contentPath)
-        {
-            try
-            {
-                InitializeSocket(port, contentPath);
-            }
-            catch
-            {
-                throw new System.Exception(Resource.SocketCreatingError);
 
-            }
+        public void Start()
+        {
+            Thread listenerThread = new Thread(new ThreadStart(Run));
+            listenerThread.Start();
+        }
+
+        public void Run()
+        {
+            _running = true;
+            _listener.Start();
             while (_running)
             {
-                //if (tcp.Pending())
+                if (_listener.Pending())
                 {
-                    var dispatcher = new Dispatcher(_serverSocket, contentPath);
-                    dispatcher.AcceptRequest();
+
+                    Socket clientSocket = _listener.AcceptSocket();
+                    Dispatcher _dispatcher = new Dispatcher(clientSocket);
+                    Thread dispatcherThread = new Thread(new ThreadStart(_dispatcher.HandleClient));
+                    dispatcherThread.Start();
                 }
             }
-        }
-        public void Stop()
-        {
             _running = false;
-            try
-            {
-                _serverSocket.Close();
-            }
-            catch
-            {
-                throw new System.Exception(Resource.SocketClosingError);
-
-            }
-            _serverSocket = null;
+            _listener.Stop();
         }
 
     }
