@@ -32,7 +32,6 @@ namespace WebServer.Model
             catch (Exception)
             {
                 Thread.Yield();
-
             }
         }
     }

@@ -58,6 +58,7 @@ namespace WebServer.Model
             {
 
                 Thread.Yield();
+
             }
             return _charEncoder.GetString(buffer, 0, receivedBufferlen);
         }

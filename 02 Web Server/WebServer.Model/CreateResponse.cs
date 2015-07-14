@@ -71,6 +71,7 @@ namespace WebServer.Model
             catch
             {
                 Thread.Yield();
+                throw new System.Exception(Resource.SocketClosingError);
 
             }
         }
