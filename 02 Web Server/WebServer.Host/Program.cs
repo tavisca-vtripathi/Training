@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebServer.Model;
+<<<<<<< HEAD
 using System.Configuration;
+=======
+>>>>>>> ceb05b56c55fa4efc1ceb10271de68a060243c84
 
 namespace WebServer.Model
 {
@@ -14,6 +17,7 @@ namespace WebServer.Model
         {
             try
             {
+<<<<<<< HEAD
                 string host = ConfigurationManager.AppSettings["webserver-host"];
                 if (string.IsNullOrEmpty(host))
                     throw new Exception("Host is invalid");
@@ -28,6 +32,10 @@ namespace WebServer.Model
                 Console.ReadKey();
 
                 server.Stop();
+=======
+                Listener listener = new Listener(8080);
+                listener.Start();
+>>>>>>> ceb05b56c55fa4efc1ceb10271de68a060243c84
 
             }
             catch (Exception e)

@@ -7,18 +7,17 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using System.Configuration;
 
 namespace WebServer.Model
 {
-    public class Response
+    public class CreateResponse
     {
         RegistryKey registryKey = Registry.ClassesRoot;
         public Socket ClientSocket = null;
         private string _contentPath;
         public FileHandler FileHandler;
 
-        public Response(Socket clientSocket, string contentPath)
+        public CreateResponse(Socket clientSocket, string contentPath)
         {
             _contentPath = contentPath;
             ClientSocket = clientSocket;
@@ -35,9 +34,14 @@ namespace WebServer.Model
                 else
                     SendErrorResponce(ClientSocket);      // We don't support this extension.
             }
-            else                                        //find default file as given in App.config
+            else   //find default file as index .htm of index.html
             {
-                SendResponse(ClientSocket, FileHandler.ReadFile(ConfigurationManager.AppSettings["default-document"]), "200 Ok", "text/html");
+                if (FileHandler.DoesFileExists("\\index.htm"))
+                    SendResponse(ClientSocket, FileHandler.ReadFile("\\index.htm"), "200 Ok", "text/html");
+                else if (FileHandler.DoesFileExists("\\index.html"))
+                    SendResponse(ClientSocket, FileHandler.ReadFile("\\index.html"), "200 Ok", "text/html");
+                else
+                    SendErrorResponce(ClientSocket);
             }
         }
 
@@ -61,11 +65,14 @@ namespace WebServer.Model
                 byte[] byteHeader = CreateHeader(responseCode, byteContent.Length, contentType);
                 clientSocket.Send(byteHeader);
                 clientSocket.Send(byteContent);
+
                 clientSocket.Close();
             }
             catch
             {
                 Thread.Yield();
+                throw new System.Exception(Resource.SocketClosingError);
+
             }
         }
 

@@ -30,7 +30,7 @@ namespace WebServer.Model
         {
            this._clientSocket = clientSocket;
             var requestParser = new RequestParser();
-            string requestString = DecodeRequest(_clientSocket);
+            var requestString = DecodeRequest(_clientSocket);
             requestParser.Parser(requestString);
 
             Console.WriteLine(requestParser.HttpUrl);
