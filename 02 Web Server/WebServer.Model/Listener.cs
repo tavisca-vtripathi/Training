@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,47 +9,33 @@ using System.Net.Sockets;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
-
-
-
 namespace WebServer.Model
 {
     public class Listener
     {
 
-        private TcpListener _listener;
-        private bool _running = false;
+        private TcpListener _tcpListener;
 
-
-        public Listener(int port)
+        public Listener(string host, int port)
         {
-            _listener = new TcpListener(IPAddress.Any, port);
+            this._tcpListener = new TcpListener(IPAddress.Parse(host), port);
         }
 
-        public void Start()
+        public void Listen()
         {
-            Thread listenerThread = new Thread(new ThreadStart(Run));
-            listenerThread.Start();
-        }
-
-        public void Run()
-        {
-            _running = true;
-            _listener.Start();
-            while (_running)
+            this._tcpListener.Start();
+            while (true)
             {
-                if (_listener.Pending())
-                {
+                var socket = this._tcpListener.AcceptSocket();
+                if (socket.Connected == false) continue;
 
-                    Socket clientSocket = _listener.AcceptSocket();
-                    Dispatcher dispatcher = new Dispatcher(clientSocket);
-                    Thread dispatcherThread = new Thread(new ThreadStart(dispatcher.HandleClient));
-                    dispatcherThread.Start();
-                }
+                Application.RequestQueue.Enqueue(socket);
             }
-            _running = false;
-            _listener.Stop();
         }
 
+        public void Stop()
+        {
+            this._tcpListener.Stop();
+        }
     }
-}
+ }

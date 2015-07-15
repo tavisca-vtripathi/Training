@@ -11,14 +11,24 @@ namespace WebServer.Model
 {
     class Dispatcher
     {
-        private Socket _clientSocket = null; // use a queue later on
-
-        public Dispatcher(Socket clientSocket)
+        private Socket _clientSocket = null;
+        private bool _isRunning = true;
+        internal void Start()
         {
-            _clientSocket = clientSocket;
+            while (this._isRunning)
+            {
+                Socket socket;
+                if (Application.RequestQueue.TryDequeue(out socket) == false)
+                    continue;
+                Task.Run(() =>
+                {
+                   this.Dispatch(socket);
+                });
+            }
         }
-        public void HandleClient()
+        public void Dispatch(Socket clientSocket)
         {
+           this._clientSocket = clientSocket;
             var requestParser = new RequestParser();
             string requestString = DecodeRequest(_clientSocket);
             requestParser.Parser(requestString);
@@ -27,29 +37,27 @@ namespace WebServer.Model
 
             if (requestParser.HttpMethod != null && requestParser.HttpMethod.Equals("GET"))
             {
-                //TO DO: Select appropriate class for serving the received GET request.....
-                var createResponse = new CreateResponse(_clientSocket, ConfigurationManager.AppSettings["Path"]);
-                createResponse.RequestUrl(requestParser.HttpUrl);
+                
+                var response = new Response(_clientSocket, ConfigurationManager.AppSettings["Path"]);
+                response.RequestUrl(requestParser.HttpUrl);
             }
             else
             {
-                Thread.Yield();
-
+                new InProcQueue().Enqueue(_clientSocket);
+                     
             }
-            StopClientSocket(_clientSocket);  //closes the connection
-        }
+          }
 
-        public void StopClientSocket(Socket clientSocket)
+        internal void Stop()
         {
-            if (clientSocket != null)
-                clientSocket.Close();
+            this._isRunning = false;
         }
 
         private string DecodeRequest(Socket clientSocket)
         {
             Encoding _charEncoder = Encoding.UTF8;
             var receivedBufferlen = 0;
-            var buffer = new byte[10240];
+            var buffer = new byte[1024];
             try
             {
                 receivedBufferlen = clientSocket.Receive(buffer);
