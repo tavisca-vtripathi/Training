@@ -13,9 +13,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator Overloading.Parse"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 Web Server", "02 Web Server", "{8A83CFEE-28F3-4DFB-9463-B8C912770D53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Host", "WebServer.Host\WebServer.Host.csproj", "{8DA4793C-52DA-40F6-82A7-E93EA7BF16FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Host", "02 Web Server\WebServer.Host\WebServer.Host.csproj", "{8DA4793C-52DA-40F6-82A7-E93EA7BF16FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Model", "WebServer.Model\WebServer.Model.csproj", "{24FA931F-3E02-4EFE-B324-454EE69CED50}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebServer.Model", "02 Web Server\WebServer.Model\WebServer.Model.csproj", "{24FA931F-3E02-4EFE-B324-454EE69CED50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
