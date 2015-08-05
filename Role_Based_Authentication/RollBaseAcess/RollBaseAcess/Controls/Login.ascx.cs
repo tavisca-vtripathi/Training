@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 
+
 namespace RollBaseAcess
 {
     public partial class Login : System.Web.UI.UserControl
@@ -32,16 +33,16 @@ namespace RollBaseAcess
             try
             {
                 HttpClient client = new HttpClient();
-                var empResponse = client.UploadData<Credentials, Employee>(_emsUri + "/login", credentials);
-                if (empResponse != null)
+                var empResponse = client.UploadData<Credentials,EmployeeResponse>(_emsUri + "/login", credentials);
+                if (empResponse.Status.StatusCode.Equals("200")==true)
                 {
                     FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
                         1,
-                        empResponse.Email,
+                        empResponse.Employee.Email,
                         DateTime.Now,
                         DateTime.Now.AddMinutes(30),
                         true,
-                        empResponse.Title,
+                        empResponse.Employee.Title,
                         FormsAuthentication.FormsCookiePath);
 
                     string hash = FormsAuthentication.Encrypt(ticket);
@@ -49,9 +50,10 @@ namespace RollBaseAcess
                        FormsAuthentication.FormsCookieName,
                        hash);
                     Response.Cookies.Add(cookie);
-                    Session["Response"] = empResponse.ToSession();
+                    Session["Response"] = empResponse.Employee.ToSession();
+                    //Response.Redirect("HR/AddRemark.aspx");
 
-                    Response.Redirect(FormsAuthentication.GetRedirectUrl(empResponse.Email, CheckBox1.Checked));
+                    Response.Redirect(FormsAuthentication.GetRedirectUrl(empResponse.Employee.Email, true));
                 }
             }
             catch (Exception)

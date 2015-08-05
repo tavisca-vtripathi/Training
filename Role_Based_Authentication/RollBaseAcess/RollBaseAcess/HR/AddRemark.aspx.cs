@@ -20,21 +20,17 @@ namespace RollBaseAcess.HR
         {
             try
             {
-                //Employee empObject = (Employee)Session["Response"];
-                //if (empObject.Title != "Hr" || empObject == null)
-                //{
-                //    Response.Redirect("Login.aspx");
-                //}
+                
                 if (Page.IsPostBack == false)
                 {
                     HttpClient client = new HttpClient();
-                    var empRespone = client.GetData<List<Employee>>(_esUri + "/employee");
-                    if (empRespone == null)
+                    var empResponse = client.GetData<GetAllEmployee>(_esUri + "/employee");
+                    if (empResponse.Status.StatusCode != "200")
                     {
 
                         return;
                     }
-                    foreach (var employeeRecord in empRespone.OrderBy(employee => employee.FirstName))
+                    foreach (var employeeRecord in empResponse.AllEmployeeList.OrderBy(employee => employee.FirstName))
                     {
                         empRecord.Add(employeeRecord.FirstName + " " + employeeRecord.LastName, employeeRecord.Id);
                     }

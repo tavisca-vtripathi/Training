@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RollBaseAcess.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,17 @@ namespace RollBaseAcess
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Page.IsPostBack == false)
+            {
+                Employee empObject = ((Model.Session.Employee)Session["Response"]).ToServer();
+                if (string.Equals(empObject.Title, "Hr") == true)
+                {
+                    Response.Redirect("HR/AddRemark.aspx");
+                }
+                Response.Redirect("Employee/Remarks.aspx");
+
+
+            }
 
         }
     }

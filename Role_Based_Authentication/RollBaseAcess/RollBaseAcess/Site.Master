@@ -38,11 +38,6 @@
     </asp:ScriptManager>
     <header>
         <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">
-                    <a runat="server" href="~/">your logo here</a>
-                </p>
-            </div>
             <div class="float-right">
                 <section id="login">
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
@@ -58,8 +53,7 @@
                 <nav>
                     <ul id="menu">
                         <li></li>
-                        <asp:Label ID="Label1" runat="server"></asp:Label>
-                    </ul>
+                        </ul>
                 </nav>
             </div>
         </div>

@@ -10,8 +10,7 @@
             <td width="33%"></td>
             <td>
     <asp:Button ID="Button1" runat="server" Font-Size="Small" Height="32px" OnClick="Button1_Click" Text="Update Profile" Width="114px" />
-&nbsp;<asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Logout" />
-            </td>
+&nbsp;</td>
         </tr>
     </table>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

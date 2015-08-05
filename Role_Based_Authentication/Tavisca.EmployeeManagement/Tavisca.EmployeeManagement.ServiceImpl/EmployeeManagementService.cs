@@ -7,6 +7,7 @@ using Tavisca.EmployeeManagement.ServiceContract;
 using Tavisca.EmployeeManagement.Interface;
 using Tavisca.EmployeeManagement.Translator;
 using Tavisca.EmployeeManagement.EnterpriseLibrary;
+using Tavisca.EmployeeManagement.DataContract;
 
 namespace Tavisca.EmployeeManagement.ServiceImpl
 {
@@ -19,65 +20,109 @@ namespace Tavisca.EmployeeManagement.ServiceImpl
 
         IEmployeeManagementManager _manager;
 
-        public DataContract.Employee Create(DataContract.Employee employee)
+        public DataContract.EmployeeResponse Create(DataContract.Employee employee)
         {
+            EmployeeResponse response = new EmployeeResponse();
             try
             {
                 employee.JoiningDate = DateTime.UtcNow;
                 var result = _manager.Create(employee.ToDomainModel());
-                if (result == null) return null;
-                return result.ToDataContract();
+                if (result == null)
+                {
+                    response.Status.StatusCode = "500";
+                    response.Status.Message = "Error in creating employee";
+
+
+                    return response;
+                }
+                response.Employee = result.ToDataContract();
+                return response;
             }
             catch (Exception ex)
             {
-                Exception newEx;
-                var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                throw newEx;
+                //Exception newEx;
+                //var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
+                //throw newEx;
+
+
+                ExceptionPolicy.HandleException("service.policy", ex);
+                response.Status.StatusCode = "500";
+                response.Status.Message = "Error in creating Employee";
+                return response;
             }
         }
 
-        public DataContract.Remark AddRemark(string employeeId, DataContract.Remark remark)
+        public DataContract.RemarkResponse AddRemark(string employeeId, DataContract.Remark remark)
         {
+            RemarkResponse response = new RemarkResponse();
             try
             {
                 var result = _manager.AddRemark(employeeId, remark.ToDomainModel());
-                if (result == null) return null;
-                return result.ToDataContract();
+                if (result == null)
+                {
+                    response.Status.StatusCode = "500";
+                    response.Status.Message = "Error in creating employee";
+
+
+                    return response;
+                }
+                response.Remark = result.ToDataContract();
+                return response;
             }
             catch (Exception ex)
             {
-                Exception newEx;
-                var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                throw newEx;
+                //Exception newEx;
+                //var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
+                //throw newEx;
+                ExceptionPolicy.HandleException("service.policy", ex);
+                response.Status.StatusCode = "500";
+                response.Status.Message = "Error in creating Employee";
+                return response;
             }
         }
 
-        public DataContract.Employee Authenticate(DataContract.Credentials credentials)
+        public DataContract.EmployeeResponse Authenticate(DataContract.Credentials credentials)
         {
+            EmployeeResponse response = new EmployeeResponse();
             var result = _manager.Authenticate(credentials.EmailId, credentials.Password);
             if (result == null)
             {
-                return null;
+                response.Status.StatusCode = "500";
+                response.Status.Message = "Error in creating employee";
+
+
+                return response;
             }
-            return result.ToDataContract();
+            response.Employee = result.ToDataContract();
+            return response;
         }
-        
-        public bool UpdatePassword(DataContract.ChangePassword changePassword)
-         {
-             try
-             {
-                var result = _manager.UpdatePassword(changePassword.OldPassword,changePassword.NewPassword,changePassword.EmailId);
-                  if (result == false) return false;
-                  return result;
 
-             }
-             catch (Exception ex)
-             {
-                 Exception newEx;
-                 var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
-                 throw newEx;
-             }
+        public Result UpdatePassword(DataContract.ChangePassword changePassword)
+        {
+            Result response = new Result();
+            try
+            {
+                var result = _manager.UpdatePassword(changePassword.OldPassword, changePassword.NewPassword, changePassword.EmailId);
+                if (result == false)
+                {
+                    response.Status.StatusCode = "500";
+                    response.Status.Message = "Error in updating password";
+                    return response;
+                }
+                return response;
+            }
+            catch (Exception ex)
+            {
 
-         }
+                //Exception newEx;
+                //var rethrow = ExceptionPolicy.HandleException("service.policy", ex, out newEx);
+                //throw newEx;
+                ExceptionPolicy.HandleException("service.policy", ex);
+                response.Status.StatusCode = "500";
+                response.Status.Message = "Error in creating Employee";
+                return response;
+            }
+
+        }
     }
 }

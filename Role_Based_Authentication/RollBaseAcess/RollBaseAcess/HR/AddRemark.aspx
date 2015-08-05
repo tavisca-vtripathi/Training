@@ -16,7 +16,7 @@
         <table style="width:100%;">
             <tr>
                 <td width="33%">
-                    <asp:Label ID="Label1" runat="server" Text="Select Employee"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Text="Select Employee :"></asp:Label>
                 </td>
                 <td width="33%">&nbsp;</td>
                 <td width="33%">&nbsp;</td>
@@ -30,6 +30,13 @@
                 <td width="33%" class="auto-style1"></td>
             </tr>
             <tr>
+                <td width="33%" class="auto-style1">
+                    <asp:Label ID="Label3" runat="server" Text="Enter Remark:"></asp:Label>
+                </td>
+                <td width="33%" class="auto-style1">&nbsp;</td>
+                <td width="33%" class="auto-style1">&nbsp;</td>
+            </tr>
+            <tr>
                 <td width="33%">
                     <asp:TextBox ID="TextBox1" runat="server" TextMode="MultiLine"></asp:TextBox>
                 </td>
@@ -40,7 +47,7 @@
             </tr>
             <tr>
                 <td width="33%">
-                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" ValidationGroup="Employee" Text="Add Remark" />
+                    <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" ValidationGroup="Employee" Text="Add" />
                     <asp:Label ID="Label2" runat="server"></asp:Label>
                 </td>
                 <td width="33%">&nbsp;</td>

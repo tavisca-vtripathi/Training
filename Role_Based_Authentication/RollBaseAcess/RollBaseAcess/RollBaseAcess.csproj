@@ -193,6 +193,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="HR\UpdateProfile.aspx" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -295,9 +296,21 @@
     <Compile Include="Employee\UpdateProfile.aspx.designer.cs">
       <DependentUpon>UpdateProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\UpdateProfile.aspx.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\UpdateProfile.aspx.designer.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Model\ChangePasssword.cs" />
     <Compile Include="Model\Credentials.cs" />
     <Compile Include="Model\Employee.cs" />
+    <Compile Include="Model\EmployeeResponse.cs" />
+    <Compile Include="Model\GetAllEmployee.cs" />
+    <Compile Include="Model\RemarkCount.cs" />
+    <Compile Include="Model\RemarkResponse.cs" />
+    <Compile Include="Model\Result.cs" />
     <Compile Include="Model\Session\Employee.cs" />
     <Compile Include="Model\HttpClient.cs" />
     <Compile Include="Model\Remark.cs" />
@@ -312,6 +325,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

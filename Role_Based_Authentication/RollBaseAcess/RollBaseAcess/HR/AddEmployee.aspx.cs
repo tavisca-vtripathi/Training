@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,30 +16,15 @@ namespace RollBaseAcess.HR
         string _emsUri = ConfigurationManager.AppSettings["EMSUri"];
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
-            {
-                if (Page.IsPostBack == false)
-                {
-                    Employee empObject = (Employee)Session["Response"];
-                    if (empObject.Title != "Hr" || empObject == null)
-                    {
-                        Response.Redirect("Login.aspx");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                Response.Redirect("Login.aspx");
 
-            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             
             Employee employee = new Employee();
-            employee.FirstName = TextBox1.Text;
-            employee.LastName = TextBox2.Text;
+            employee.FirstName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(TextBox1.Text);
+            employee.LastName = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(TextBox2.Text);
             employee.Title = DropDownList1.SelectedValue;
             employee.Phone = TextBox4.Text;
             employee.Email = TextBox5.Text;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tavisca.EmployeeManagement.DataContract;
 using Tavisca.EmployeeManagement.EnterpriseLibrary;
 using Tavisca.EmployeeManagement.Interface;
 using Tavisca.EmployeeManagement.ServiceContract;
@@ -19,51 +20,86 @@ namespace Tavisca.EmployeeManagement.ServiceImpl
 
         IEmployeeManager _manager;
 
-        public DataContract.Employee Get(string employeeId, string pageNo)
+        public DataContract.EmployeeResponse Get(string employeeId, string pageNo)
         {
+            EmployeeResponse response = new EmployeeResponse();
             try
             {
                 var result = _manager.Get(employeeId,pageNo);
-                if (result == null) return null;
-                return result.ToDataContract();
+                if (result == null)
+                {
+                    response.Status.StatusCode = "500";
+                    response.Status.Message = "Error in getting Employee";
+
+
+                    return response;
+                }
+                response.Employee= result.ToDataContract();
+                return response;
             }
             catch (Exception ex)
             {
-                var rethrow = ExceptionPolicy.HandleException("service.policy", ex);
-                if (rethrow) throw;
-                return null;
+                //var rethrow = ExceptionPolicy.HandleException("service.policy", ex);
+                //if (rethrow) throw;
+                //return null;
+                ExceptionPolicy.HandleException("service.policy", ex);
+                response.Status.StatusCode = "500";
+                response.Status.Message = "Error in getting Employee";
+                return response;
             }
         }
 
-        public List<DataContract.Employee> GetAll()
+        public DataContract.GetAllEmployee GetAll()
         {
+            GetAllEmployee response = new GetAllEmployee();
             try
             {
                 var result = _manager.GetAll();
-                if (result == null) return null;
-                return result.Select(employee => employee.ToDataContract()).ToList();
+                if (result == null)
+                {
+                    response.Status.StatusCode = "500";
+                    response.Status.Message = "Error in getting Employee list";
+
+
+                    return response;
+                }
+                response.AllEmployeeList= result.Select(employee => employee.ToDataContract()).ToList();
+                return response;
             }
             catch (Exception ex)
             {
-                var rethrow = ExceptionPolicy.HandleException("service.policy", ex);
-                if (rethrow) throw;
-                return null;
+                //var rethrow = ExceptionPolicy.HandleException("service.policy", ex);
+                //if (rethrow) throw;
+                //return null;
+                ExceptionPolicy.HandleException("service.policy", ex);
+                response.Status.StatusCode = "500";
+                response.Status.Message = "Error in getting Employee list";
+                return response;
             }
 
         }
-        public string CountRemark(string employeeId)
+        public RemarkCount CountRemark(string employeeId)
         {
+            RemarkCount response = new RemarkCount();
             try
             {
-                var result = _manager.CountRemark(employeeId);
-                if (result == null) return "0";
-                return result;
+                response.totalRemark = _manager.CountRemark(employeeId);
+                if (response.totalRemark == null)
+                {
+                    response.Status.StatusCode = "500";
+                    response.Status.Message = "Error in counting remark";
+
+
+                    return response;
+                }
+                return response;
             }
             catch (Exception ex)
             {
-                var rethrow = ExceptionPolicy.HandleException("service.policy", ex);
-                if (rethrow) throw;
-                return "0";
+                ExceptionPolicy.HandleException("service.policy", ex);
+                response.Status.StatusCode = "500";
+                response.Status.Message = "Error in counting remark";
+                return response;
             }
         }
     }

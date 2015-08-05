@@ -19,18 +19,12 @@ namespace RollBaseAcess
             try
             {
                 Employee empObject = ((Model.Session.Employee)Session["Response"]).ToServer();
-
-                ////- (Label)Master.FindControl("Label1").Text = "Welcome " + empObject.FirstName;
-                //if (empObject.Title == "Hr" || empObject == null)
-                //{
-                //    Response.Redirect("Login.aspx");
-                //}
                 if (Page.IsPostBack == false)
                 {
                     HttpClient client = new HttpClient();
-                    var response = client.GetData<string>(_esUri + "/remarkCount/" + empObject.Id + " ", "application/json");
-                    GridView1.VirtualItemCount = Convert.ToInt32(response);
-                    GridView1.DataSource = GetRemarks(empObject.Id, 1);
+                    var response = client.GetData<RemarkCount>(_esUri + "/remarkCount/" + empObject.Id.Trim() + " ", "application/json");
+                    GridView1.VirtualItemCount = Convert.ToInt32(response.totalRemark);
+                    GridView1.DataSource = GetRemarks(empObject.Id.Trim(), 1);
                     GridView1.DataBind();
                 }
             }
@@ -45,9 +39,9 @@ namespace RollBaseAcess
         public List<Remark> GetRemarks(string employeeId, int pageNumber)
         {
             HttpClient client = new HttpClient();
-            var response = client.GetData<Employee>(_esUri + "/employee/" + employeeId + "/" + pageNumber + "", "application/json");
+            var response = client.GetData<EmployeeResponse>(_esUri + "/employee/" + employeeId + "/" + pageNumber + "", "application/json");
             List<Remark> remarklList = new List<Remark>();
-            remarklList = response.Remarks;
+            remarklList = response.Employee.Remarks;
 
 
 
@@ -60,20 +54,14 @@ namespace RollBaseAcess
 
         protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            Employee empObject = (Employee)Session["Response"];
+            Employee empObject = ((Model.Session.Employee)Session["Response"]).ToServer();
             int pageNo = e.NewPageIndex;
             GridView1.PageIndex = pageNo;
             GridView1.DataSource = GetRemarks(empObject.Id, pageNo + 1);
             GridView1.DataBind();
         }
 
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            Session.Abandon();
-            Response.Redirect("Login.aspx");
-
-
-        }
+        
 
     }
 }

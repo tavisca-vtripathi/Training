@@ -21,7 +21,7 @@
     <ul class="nav nav-tabs">
         <li><a href="/HR/AddRemark.aspx">Add Remark</a></li>
         <li><a href="/HR/AddEmployee.aspx">Add Employee</a></li>
-        <li><a href="/Employee/UpdateProfile.aspx">UpdateProfile</a></li>
+        <li><a href="/HR/UpdateProfile.aspx">UpdateProfile</a></li>
     </ul>
 
 

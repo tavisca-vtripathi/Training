@@ -1,18 +1,15 @@
-﻿using System;
+﻿using RollBaseAcess.Model;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using RollBaseAcess.Model;
-using System.Configuration;
-
-
-
-namespace RollBaseAcess._1.View
+namespace RollBaseAcess.HR
 {
-    public partial class WebForm3 : System.Web.UI.Page
+    public partial class UpdateProfile : System.Web.UI.Page
     {
         string _emsUri = ConfigurationManager.AppSettings["EMSUri"];
         protected void Page_Load(object sender, EventArgs e)
@@ -39,22 +36,25 @@ namespace RollBaseAcess._1.View
             changePassword.OldPassword = TextBox2.Text;
             changePassword.NewPassword = TextBox4.Text;
             HttpClient client = new HttpClient();
-            var empResponse = client.UploadData<ChangePasssword, Result>(_emsUri+"/update", changePassword);
-            if (empResponse.Status.StatusCode!="200")
+            var empResponse = client.UploadData<ChangePasssword, Result>(_emsUri + "/update", changePassword);
+            if (empResponse.Status.StatusCode != "200")
             {
                 Label5.Text = "Failure!!";
                 return;
             }
-            Label5.Text="Success!!";
+            Label5.Text = "Success!!";
         }
-
-        
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Remarks.aspx");
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
         }
 
-        
+        protected void LinkButton1_Click(object sender, EventArgs e)
+        {
+            Session.Abandon();
+            Response.Redirect("Login.aspx");
+        }
     }
 }
